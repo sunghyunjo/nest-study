@@ -1,0 +1,35 @@
+
+###
+GET http://127.0.0.1:3000/user/hyunwoo
+
+
+### 
+POST http://127.0.0.1:3000/user
+Content-Type: application/json
+
+{
+  "name" : "hyunwoo",
+  "desc" : "......",
+  "email" : "h.hyunwoo@gmail.com"
+}
+
+###
+PUT http://127.0.0.1:3000/user
+Content-Type: application/json
+
+{
+  "name" : "hyunwoo",
+  "desc" : "wt....",
+  "email" : "h.hyunwoo@gmail.com"
+}
+
+
+### 
+DELETE http://127.0.0.1:3000/user/hyunwoo
+Content-Type: application/json
+
+{
+  "name" : "hyunwoo",
+  "desc" : "......",
+  "email" : "h.hyunwoo@gmail.com"
+}
