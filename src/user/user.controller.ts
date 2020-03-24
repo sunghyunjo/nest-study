@@ -7,20 +7,26 @@ import {
   Put,
   Delete,
   BadRequestException
-} from '@nestjs/common';
-import { UserService, UserForm } from './user.service';
+} from "@nestjs/common";
+import { UserService, UserForm } from "./user.service";
+import { User } from "./user.entity";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
   // Service를 Controller의 생성자에서 주입한다.
   public constructor(private readonly service: UserService) {}
 
-  @Get('')
+  @Get("/list")
+  getAllUsers(): Promise<User[]> {
+    return this.service.getAllUsers();
+  }
+
+  @Get("")
   public getUsers() {
     return this.service.users;
   }
 
-  @Get('/:name')
+  @Get("/:name")
   // @Param 데코레이터는 request url의 param을 method의 parameter로 제공한다.
   public getUser(@Param() param: { name: string }) {
     const ret = this.service.findUser(param.name);
@@ -28,22 +34,22 @@ export class UserController {
       return ret;
     } else {
       // NestJS 에서는 기본적인 HTTPException들을 재공한다.
-      throw new BadRequestException('해당 사용자가 없습니다');
+      throw new BadRequestException("해당 사용자가 없습니다");
     }
   }
 
-  @Post('')
+  @Post("")
   // @Body 데코레이터는 request의 body data를 method의 parameter로 제공한다.
   public createUser(@Body() user: UserForm) {
     return this.service.addUser(user);
   }
 
-  @Put('')
+  @Put("")
   public editUser(@Body() user: UserForm) {
     return this.service.editUser(user);
   }
 
-  @Delete('/:name')
+  @Delete("/:name")
   public deleteUser(@Param() param: { name: string }) {
     return this.service.removeUser(param.name);
   }
