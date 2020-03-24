@@ -6,11 +6,14 @@ import {
   Body,
   Put,
   Delete,
+  UseGuards,
   BadRequestException
 } from "@nestjs/common";
 import { UserService, UserForm } from "./user.service";
 import { User } from "./user.entity";
+import { AuthGuard } from "../auth.guard";
 
+@UseGuards(AuthGuard)
 @Controller("user")
 export class UserController {
   // Service를 Controller의 생성자에서 주입한다.
