@@ -29,31 +29,36 @@ export class UserController {
     return this.service.users;
   }
 
-  @Get("/:name")
-  // @Param 데코레이터는 request url의 param을 method의 parameter로 제공한다.
-  public getUser(@Param() param: { name: string }) {
-    const ret = this.service.findUser(param.name);
-    if (ret) {
-      return ret;
-    } else {
-      // NestJS 에서는 기본적인 HTTPException들을 재공한다.
-      throw new BadRequestException("해당 사용자가 없습니다");
-    }
-  }
+  // @Get("/:name")
+  // // @Param 데코레이터는 request url의 param을 method의 parameter로 제공한다.
+  // public getUser(@Param() param: { name: string }) {
+  //   const ret = this.service.findUser(param.name);
+  //   if (ret) {
+  //     return ret;
+  //   } else {
+  //     // NestJS 에서는 기본적인 HTTPException들을 재공한다.
+  //     throw new BadRequestException("해당 사용자가 없습니다");
+  //   }
+  // }
+
+  // @Post("")
+  // // @Body 데코레이터는 request의 body data를 method의 parameter로 제공한다.
+  // public createUser(@Body() user: UserForm) {
+  //   return this.service.addUser(user);
+  // }
 
   @Post("")
-  // @Body 데코레이터는 request의 body data를 method의 parameter로 제공한다.
-  public createUser(@Body() user: UserForm) {
-    return this.service.addUser(user);
+  createMany(@Body() user: User[]) {
+    return this.service.createMany(user);
   }
 
-  @Put("")
-  public editUser(@Body() user: UserForm) {
-    return this.service.editUser(user);
-  }
+  // @Put("")
+  // public editUser(@Body() user: UserForm) {
+  //   return this.service.editUser(user);
+  // }
 
-  @Delete("/:name")
-  public deleteUser(@Param() param: { name: string }) {
-    return this.service.removeUser(param.name);
-  }
+  // @Delete("/:name")
+  // public deleteUser(@Param() param: { name: string }) {
+  //   return this.service.removeUser(param.name);
+  // }
 }
