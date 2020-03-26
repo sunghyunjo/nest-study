@@ -1,0 +1,21 @@
+###
+
+GET http://localhost:3000/user/list
+
+###
+
+POST http://localhost:3000/user
+Content-Type: application/json
+
+[
+    {
+        "firstName": "dkgadkasfjdskgasd",
+        "lastName": "whdhghd"
+    }, {
+        "firstName": "asgsdgaegawega",
+        "lastName": "whdhghd"
+    }, {
+        "firstName": "eagewgawgw",
+        "lastName": "whdhghd"
+    }
+]

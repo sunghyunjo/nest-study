@@ -13,7 +13,7 @@ import { UserService, UserForm } from "./user.service";
 import { User } from "./user.entity";
 import { AuthGuard } from "../auth.guard";
 
-@UseGuards(AuthGuard)
+// @UseGuards(AuthGuard)
 @Controller("user")
 export class UserController {
   // Service를 Controller의 생성자에서 주입한다.
@@ -49,6 +49,7 @@ export class UserController {
 
   @Post("")
   createMany(@Body() user: User[]) {
+    console.log(";...");
     return this.service.createMany(user);
   }
 

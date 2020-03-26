@@ -1,17 +1,19 @@
+import { Connection } from "typeorm";
+
 import {
+  MiddlewareConsumer,
   Module,
   NestModule,
-  MiddlewareConsumer,
   RequestMethod
 } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { Connection } from "typeorm";
+
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { VersionModule } from "./version/version.module";
-import { UserModule } from "./user/user.module";
 import { LoggerMiddleware } from "./common/logger.middleware";
 import { User } from "./user/user.entity";
+import { UserModule } from "./user/user.module";
+import { VersionModule } from "./version/version.module";
 
 @Module({
   imports: [
