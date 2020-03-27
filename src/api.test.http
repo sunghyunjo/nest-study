@@ -1,6 +1,6 @@
 ###
 
-GET http://localhost:3000/user/list
+GET http://localhost:3000/user
 
 ###
 
@@ -9,8 +9,8 @@ Content-Type: application/json
 
 [
     {
-        "firstName": "dkgadkasfjdskgasd",
-        "lastName": "whdhghd"
+        "firstName": "sunghyun",
+        "lastName": "cho"
     }, {
         "firstName": "asgsdgaegawega",
         "lastName": "whdhghd"

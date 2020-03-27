@@ -19,14 +19,14 @@ export class UserController {
   // Service를 Controller의 생성자에서 주입한다.
   public constructor(private readonly service: UserService) {}
 
-  @Get("/list")
-  getAllUsers(): Promise<User[]> {
-    return this.service.getAllUsers();
-  }
+  // @Get("/list")
+  // getAllUsers(): Promise<User[]> {
+  //   return this.service.getAllUsers();
+  // }
 
   @Get("")
-  public getUsers() {
-    return this.service.users;
+  getUser(): Promise<User[]> {
+    return this.service.findUser("sunghyun", "choi");
   }
 
   // @Get("/:name")
@@ -49,7 +49,6 @@ export class UserController {
 
   @Post("")
   createMany(@Body() user: User[]) {
-    console.log(";...");
     return this.service.createMany(user);
   }
 

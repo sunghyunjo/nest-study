@@ -12,6 +12,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { LoggerMiddleware } from "./common/logger.middleware";
 import { User } from "./user/user.entity";
+import { Food } from "./user/food.entity";
 import { UserModule } from "./user/user.module";
 import { VersionModule } from "./version/version.module";
 
@@ -26,7 +27,7 @@ import { VersionModule } from "./version/version.module";
       username: "shcho",
       password: "password",
       database: "test",
-      entities: [User],
+      entities: [User, Food],
       synchronize: true
     })
   ],

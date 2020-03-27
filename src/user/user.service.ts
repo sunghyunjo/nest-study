@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository, Connection } from "typeorm";
+import { Repository, Connection, getManager } from "typeorm";
 
 import { User } from "./user.entity";
 export interface UserForm {
@@ -13,16 +13,13 @@ export interface UserForm {
 export class UserService {
   private counter: number = 0;
   public readonly users: UserForm[] = [];
+  private manager = getManager();
 
-  constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-    private connection: Connection
-  ) {}
+  constructor(private connection: Connection) {}
 
-  async getAllUsers(): Promise<User[]> {
-    return await this.userRepository.find();
-  }
+  // async getAllUsers(): Promise<User[]> {
+  //   return await this.userRepository.find();
+  // }
 
   async createMany(users: User[]) {
     let userObj = users.map(user => new User(user));
@@ -54,9 +51,9 @@ export class UserService {
     // @Transaction() 과 @TransactionManager() 는 비추천.
   }
 
-  // public findUser(name: string) {
-  //   return this.users.find(u => u.name === name);
-  // }
+  async findUser(firstName: string, lastName: string) {
+    return await this.manager.find(User, { firstName, lastName });
+  }
   // public addUser(user: UserForm) {
   //   if (this.findUser(user.name)) {
   //     throw new BadRequestException("이미 사용자가 존재합니다.");
